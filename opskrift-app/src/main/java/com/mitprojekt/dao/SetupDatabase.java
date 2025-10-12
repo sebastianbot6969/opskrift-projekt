@@ -25,12 +25,23 @@ public class SetupDatabase {
             has_made BOOLEAN DEFAULT FALSE
         );
         """;
-
+        
+    String opskriftIngrediensSql = """
+            CREATE TABLE IF NOT EXISTS opskrift_ingredient (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            opskrift_id INTEGER NOT NULL,
+            ingredient_id INTEGER NOT NULL,
+            amount TEXT,
+            FOREIGN KEY(opskrift_id) REFERENCES opskrift(id) ON DELETE CASCADE,
+            FOREIGN KEY(ingredient_id) REFERENCES ingrediens(id) ON DELETE CASCADE
+            );
+            """;
 
         try (Connection conn = Database.connect();
              Statement stmt = conn.createStatement()) {
             stmt.execute(ingrediensSql);
             stmt.execute(opskriftSql);
+            stmt.execute(opskriftIngrediensSql);
             System.out.println("✅ Database klar (SQLite)");
         } catch (SQLException e) {
             e.printStackTrace();
