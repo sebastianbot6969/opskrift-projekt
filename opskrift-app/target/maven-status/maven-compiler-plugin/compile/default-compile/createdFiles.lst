@@ -1,8 +1,0 @@
-com/mitprojekt/dao/OpskriftDAO.class
-com/mitprojekt/dao/BaseDAO.class
-com/mitprojekt/dao/IngrediensDAO.class
-com/mitprojekt/dao/SetupDatabase.class
-com/mitprojekt/App.class
-com/mitprojekt/model/Ingrediens.class
-com/mitprojekt/model/Opskrift.class
-com/mitprojekt/dao/Database.class
