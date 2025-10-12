@@ -1,3 +1,8 @@
-/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/Database.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/dao/BaseDAO.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/dao/IngrediensDAO.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/dao/OpskriftDAO.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/model/Opskrift.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/dao/SetupDatabase.java
 /home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/model/Ingrediens.java
+/home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/dao/Database.java
 /home/sebastian/opskrifter-java/opskrift-app/src/main/java/com/mitprojekt/App.java

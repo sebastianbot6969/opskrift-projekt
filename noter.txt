@@ -1,0 +1,11 @@
+1. Forbind til databasen via Database.connect()
+
+2. Forbered SQL (med parametre for sikkerhed)
+
+3. Kør SQL: executeQuery() for SELECT, executeUpdate() for INSERT/UPDATE/DELETE
+
+4. Håndter resultater (ResultSet eller antal påvirkede rækker)
+
+5. Exception handling med try/catch
+
+6. Returnér resultat (objekt, liste eller boolean)
