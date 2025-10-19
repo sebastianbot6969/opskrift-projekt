@@ -1,0 +1,10 @@
+com/mitprojekt/dao/BaseDAO.class
+com/mitprojekt/model/RecipeIngredient.class
+com/mitprojekt/dao/SetupDatabase.class
+com/mitprojekt/App.class
+com/mitprojekt/dao/IngredientDAO.class
+com/mitprojekt/model/Ingredient.class
+com/mitprojekt/dao/RecipeIngredientDAO.class
+com/mitprojekt/dao/RecipeDAO.class
+com/mitprojekt/model/Recipe.class
+com/mitprojekt/dao/Database.class
