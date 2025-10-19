@@ -1,0 +1,17 @@
+#java
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+
+./target/
+.idea/
+*.log
+
+# Maven
+/logs/
+
+#vscode
+.vscode/
