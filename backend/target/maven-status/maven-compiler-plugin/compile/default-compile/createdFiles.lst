@@ -1,3 +1,5 @@
+com/mitprojekt/controller/IngredientController.class
+com/mitprojekt/controller/RecipeController.class
 com/mitprojekt/dao/BaseDAO.class
 com/mitprojekt/model/RecipeIngredient.class
 com/mitprojekt/App.class

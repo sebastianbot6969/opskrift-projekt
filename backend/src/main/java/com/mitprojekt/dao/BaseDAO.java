@@ -14,7 +14,6 @@ public abstract class BaseDAO {
     }
 
     protected int findParentId(String table, String name) {
-        // Søger efter parent_id baseret på navnet, for alle tabeller der har parent_id
         String sql = "SELECT id FROM " + table + "ingredient WHERE name = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

@@ -1,7 +1,9 @@
+com/mitprojekt/ModelTests/RecipeIngredientTest.class
 com/mitprojekt/AppTest.class
-com/mitprojekt/RecipeIngredientTest.class
-com/mitprojekt/RecipeIngredientDAOTest.class
-com/mitprojekt/IngredientDAOTest.class
-com/mitprojekt/RecipeTest.class
-com/mitprojekt/IngredientTest.class
-com/mitprojekt/RecipeDAOTest.class
+com/mitprojekt/ControllerTests/IngredientControllerTest.class
+com/mitprojekt/ControllerTests/RecipeControllerTest.class
+com/mitprojekt/DAOTests/RecipeIngredientDAOTest.class
+com/mitprojekt/DAOTests/IngredientDAOTest.class
+com/mitprojekt/ModelTests/IngredientTest.class
+com/mitprojekt/DAOTests/RecipeDAOTest.class
+com/mitprojekt/ModelTests/RecipeTest.class

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mitprojekt.AppTest" time="0.04" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.054" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -7,6 +7,7 @@
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="user.timezone" value="Europe/Copenhagen"/>
     <property name="os.name" value="Linux"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -26,6 +27,8 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
     <property name="surefire.real.class.path" value="/home/sebastian/opskrift-app/backend/target/surefire/surefirebooter-20251023232509001_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+9-Ubuntu-0ubuntu124.04.1"/>
@@ -43,6 +46,8 @@
     <property name="user.dir" value="/home/sebastian/opskrift-app/backend"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="538"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="stderr.encoding" value="UTF-8"/>
@@ -52,5 +57,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testAppRuns" classname="com.mitprojekt.AppTest" time="0.026"/>
+  <testcase name="testInsertIngredient" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.009"/>
+  <testcase name="testInsertAndFetch" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.008"/>
+  <testcase name="testGetById" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.006"/>
+  <testcase name="testGetAllReturnsList" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.001"/>
+  <testcase name="testUpdateNonExisting" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.001"/>
+  <testcase name="testDeleteIngredient" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.015"/>
+  <testcase name="testUpdateIngredient" classname="com.mitprojekt.DAOTests.IngredientDAOTest" time="0.013"/>
 </testsuite>

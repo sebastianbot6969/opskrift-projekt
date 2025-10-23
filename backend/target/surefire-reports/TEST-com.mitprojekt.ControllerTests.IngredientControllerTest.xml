@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mitprojekt.AppTest" time="0.04" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mitprojekt.ControllerTests.IngredientControllerTest" time="2.582" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -7,6 +7,7 @@
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="user.timezone" value="Europe/Copenhagen"/>
     <property name="os.name" value="Linux"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -26,6 +27,8 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
     <property name="surefire.real.class.path" value="/home/sebastian/opskrift-app/backend/target/surefire/surefirebooter-20251023232509001_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+9-Ubuntu-0ubuntu124.04.1"/>
@@ -43,6 +46,8 @@
     <property name="user.dir" value="/home/sebastian/opskrift-app/backend"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="538"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="stderr.encoding" value="UTF-8"/>
@@ -52,5 +57,32 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testAppRuns" classname="com.mitprojekt.AppTest" time="0.026"/>
+  <testcase name="testGetAllIngredients" classname="com.mitprojekt.ControllerTests.IngredientControllerTest" time="0.858">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.1)
+
+2025-10-23T23:25:10.243+02:00  INFO 538 --- [           main] c.m.C.IngredientControllerTest           : Starting IngredientControllerTest using Java 21.0.8 with PID 538 (started by sebastian in /home/sebastian/opskrift-app/backend)
+2025-10-23T23:25:10.245+02:00  INFO 538 --- [           main] c.m.C.IngredientControllerTest           : No active profile set, falling back to 1 default profile: "default"
+2025-10-23T23:25:11.242+02:00  INFO 538 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-10-23T23:25:11.243+02:00  INFO 538 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-10-23T23:25:11.244+02:00  INFO 538 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-10-23T23:25:11.263+02:00  INFO 538 --- [           main] c.m.C.IngredientControllerTest           : Started IngredientControllerTest in 1.225 seconds (process running for 2.194)
+]]></system-out>
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/sebastian/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.17/byte-buddy-agent-1.14.17.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="testCreateIngredient" classname="com.mitprojekt.ControllerTests.IngredientControllerTest" time="0.066"/>
+  <testcase name="testDeleteIngredient" classname="com.mitprojekt.ControllerTests.IngredientControllerTest" time="0.031"/>
+  <testcase name="testUpdateIngredient" classname="com.mitprojekt.ControllerTests.IngredientControllerTest" time="0.024"/>
+  <testcase name="testGetIngredientById" classname="com.mitprojekt.ControllerTests.IngredientControllerTest" time="0.013"/>
 </testsuite>

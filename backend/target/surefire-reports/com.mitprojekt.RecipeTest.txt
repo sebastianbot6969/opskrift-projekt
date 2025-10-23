@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.mitprojekt.RecipeTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.mitprojekt.RecipeTest

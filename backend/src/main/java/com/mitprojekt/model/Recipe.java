@@ -8,6 +8,9 @@ public class Recipe {
     private String procedure;
     private boolean hasMade;
 
+    public Recipe() {
+    }
+
     public Recipe(int id, String name, String linkToPage, int time, String procedure, boolean hasMade) {
         setId(id);
         setName(name);
@@ -18,13 +21,12 @@ public class Recipe {
     }
 
     public Recipe(String name, String linkToPage, int time, String procedure, boolean hasMade) {
-    setName(name);
-    setLinkToPage(linkToPage);
-    setTime(time);
-    setProcedure(procedure);
-    setHasMade(hasMade);
-}
-
+        setName(name);
+        setLinkToPage(linkToPage);
+        setTime(time);
+        setProcedure(procedure);
+        setHasMade(hasMade);
+    }
 
     public int getId() {
         return id;
