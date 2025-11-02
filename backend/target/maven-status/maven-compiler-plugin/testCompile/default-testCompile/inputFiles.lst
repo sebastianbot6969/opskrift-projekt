@@ -1,9 +1,0 @@
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/ModelTests/RecipeIngredientTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/ModelTests/IngredientTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/ModelTests/RecipeTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/ControllerTests/IngredientControllerTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/ControllerTests/RecipeControllerTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/DAOTests/IngredientDAOTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/DAOTests/RecipeIngredientDAOTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/AppTest.java
-/home/sebastian/opskrift-app/backend/src/test/java/com/mitprojekt/DAOTests/RecipeDAOTest.java

@@ -1,9 +1,0 @@
-com/mitprojekt/ModelTests/RecipeIngredientTest.class
-com/mitprojekt/AppTest.class
-com/mitprojekt/ControllerTests/IngredientControllerTest.class
-com/mitprojekt/ControllerTests/RecipeControllerTest.class
-com/mitprojekt/DAOTests/RecipeIngredientDAOTest.class
-com/mitprojekt/DAOTests/IngredientDAOTest.class
-com/mitprojekt/ModelTests/IngredientTest.class
-com/mitprojekt/DAOTests/RecipeDAOTest.class
-com/mitprojekt/ModelTests/RecipeTest.class
