@@ -22,6 +22,7 @@ public class IngredientControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    // CREATE
     @Test
     void testCreateIngredient() throws Exception {
         Ingredient ingredient = new Ingredient("Tomato");
@@ -35,6 +36,7 @@ public class IngredientControllerTest {
                 .andExpect(jsonPath("$.name").value("Tomato"));
     }
 
+    // READ all
     @Test
     void testGetAllIngredients() throws Exception {
         mockMvc.perform(get("/api/ingredients"))
@@ -42,6 +44,7 @@ public class IngredientControllerTest {
                 .andExpect(jsonPath("$").isArray());
     }
 
+    // READ one
     @Test
     void testGetIngredientById() throws Exception {
         Ingredient ingredient = new Ingredient("Cheese");
@@ -57,9 +60,10 @@ public class IngredientControllerTest {
                 .andExpect(jsonPath("$.name").value("Cheese"));
     }
 
+    // UPDATE
     @Test
     void testUpdateIngredient() throws Exception {
-        Ingredient ingredient = new Ingredient("Lettuce");
+        Ingredient ingredient = new Ingredient("Onion");
         String response = mockMvc.perform(post("/api/ingredients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(ingredient)))
@@ -67,19 +71,19 @@ public class IngredientControllerTest {
 
         Ingredient created = objectMapper.readValue(response, Ingredient.class);
 
-        // Update name
-        created.setName("Romaine Lettuce");
+        created.setName("Red Onion");
 
         mockMvc.perform(put("/api/ingredients/" + created.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(created)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Romaine Lettuce"));
+                .andExpect(jsonPath("$.name").value("Red Onion"));
     }
 
+    // DELETE
     @Test
     void testDeleteIngredient() throws Exception {
-        Ingredient ingredient = new Ingredient("Onion");
+        Ingredient ingredient = new Ingredient("Garlic");
         String response = mockMvc.perform(post("/api/ingredients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(ingredient)))

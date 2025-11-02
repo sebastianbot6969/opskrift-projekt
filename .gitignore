@@ -4,7 +4,7 @@
 *.war
 *.ear
 
-opskrift-app/target/
+backend/target/
 .idea/
 *.log
 

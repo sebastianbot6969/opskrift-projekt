@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import org.springframework.stereotype.Repository;
 
 
+@Repository
 public abstract class BaseDAO {
     protected Connection getConnection() throws SQLException {
         return Database.connect();

@@ -1,6 +1,11 @@
 package com.mitprojekt.ControllerTests;
 
+import com.mitprojekt.dao.IngredientDAO;
+import com.mitprojekt.dao.RecipeDAO;
+import com.mitprojekt.model.Ingredient;
 import com.mitprojekt.model.Recipe;
+import com.mitprojekt.model.RecipeIngredient;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,95 +14,127 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.List;
 
 @SpringBootTest(classes = com.mitprojekt.App.class)
 @AutoConfigureMockMvc
 public class RecipeControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @Test
-    void testCreateRecipe() throws Exception {
-        Recipe recipe = new Recipe("Pasta Carbonara", "http://example.com", 20, "Cook pasta. Mix sauce.", false);
+        @Autowired
+        private RecipeDAO recipeDAO;
 
-        mockMvc.perform(post("/api/recipes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(recipe)))
-                .andExpect(status().isCreated())
-                .andExpect(header().exists("Location")) 
-                .andExpect(jsonPath("$.id").isNumber())
-                .andExpect(jsonPath("$.name").value("Pasta Carbonara"));
-    }
+        @Autowired
+        private IngredientDAO ingredientDAO;
 
-    @Test
-    void testGetAllRecipes() throws Exception {
-        mockMvc.perform(get("/api/recipes"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray());
-    }
+        @Test
+        void testCreateRecipeWithIngredients() throws Exception {
+                RecipeIngredient ri1 = new RecipeIngredient(0, 1, "200g");
+                RecipeIngredient ri2 = new RecipeIngredient(0, 2, "100g");
 
-    @Test
-    void testGetRecipeById() throws Exception {
+                Recipe recipe = new Recipe("Carbonara", "http://example.com", 20, "Cook pasta.", false);
+                recipe.setIngredients(List.of(ri1, ri2));
 
-        Recipe recipe = new Recipe("Pizza Margherita", "http://example.com", 25, "Bake pizza.", false);
-        String response = mockMvc.perform(post("/api/recipes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(recipe)))
-                .andReturn().getResponse().getContentAsString();
+                String response = mockMvc.perform(post("/api/recipes")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(recipe)))
+                                .andExpect(status().isCreated())
+                                .andReturn().getResponse().getContentAsString();
 
-        Recipe created = objectMapper.readValue(response, Recipe.class);
+                Recipe created = objectMapper.readValue(response, Recipe.class);
+                assertNotNull(created.getId());
+                assertEquals(2, created.getIngredients().size());
+        }
 
-        mockMvc.perform(get("/api/recipes/" + created.getId()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Pizza Margherita"));
-    }
+        @Test
+        void testGetAllRecipes() throws Exception {
+                mockMvc.perform(get("/api/recipes"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$").isArray());
+        }
 
-    @Test
-    void testUpdateRecipe() throws Exception {
-        // Create a recipe
-        Recipe recipe = new Recipe("Salad", "http://example.com", 10, "Mix veggies.", false);
-        String response = mockMvc.perform(post("/api/recipes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(recipe)))
-                .andReturn().getResponse().getContentAsString();
+        @Test
+        void testGetRecipeById() throws Exception {
+                Recipe recipe = new Recipe("Pizza Margherita", "http://example.com", 25, "Bake pizza.", false);
 
-        Recipe created = objectMapper.readValue(response, Recipe.class);
+                String response = mockMvc.perform(post("/api/recipes")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(recipe)))
+                                .andReturn().getResponse().getContentAsString();
 
-        // Update it
-        created.setName("Updated Salad");
-        created.setHasMade(true);
+                Recipe created = objectMapper.readValue(response, Recipe.class);
 
-        mockMvc.perform(put("/api/recipes/" + created.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(created)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Updated Salad"));
-    }
+                mockMvc.perform(get("/api/recipes/" + created.getId()))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.name").value("Pizza Margherita"));
+        }
 
-    @Test
-    void testDeleteRecipe() throws Exception {
-        // Create a recipe
-        Recipe recipe = new Recipe("Soup", "http://example.com", 15, "Boil water.", false);
-        String response = mockMvc.perform(post("/api/recipes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(recipe)))
-                .andReturn().getResponse().getContentAsString();
+        @Test
+        void testGetRecipesByIngredient() throws Exception {
+                // Opret ingrediens
+                Ingredient ing = new Ingredient("Cheese");
+                ing = ingredientDAO.insertIngredient(ing);
 
-        Recipe created = objectMapper.readValue(response, Recipe.class);
+                // Opret opskrift
+                Recipe recipe = new Recipe("Cheese Pizza", "http://example.com", 20, "Bake pizza", false);
+                recipe = recipeDAO.insertRecipe(recipe);
 
-        // Delete it
-        mockMvc.perform(delete("/api/recipes/" + created.getId()))
-                .andExpect(status().isNoContent()); 
+                // Link ingrediens til opskrift
+                recipeDAO.addIngredientToRecipe(recipe.getId(), ing);
 
-        // Verify deletion
-        mockMvc.perform(get("/api/recipes/" + created.getId()))
-                .andExpect(status().isNotFound());
-    }
+                // Test endpoint
+                mockMvc.perform(get("/api/recipes/by-ingredient/" + ing.getId())
+                                .contentType(MediaType.APPLICATION_JSON))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$[0].name").value("Cheese Pizza"));
+        }
 
+        @Test
+        void testUpdateRecipe() throws Exception {
+                Recipe recipe = new Recipe("Salad", "http://example.com", 10, "Mix veggies.", false);
+
+                String response = mockMvc.perform(post("/api/recipes")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(recipe)))
+                                .andReturn().getResponse().getContentAsString();
+
+                Recipe created = objectMapper.readValue(response, Recipe.class);
+
+                // update
+                created.setName("Updated Salad");
+                created.setHasMade(true);
+
+                mockMvc.perform(put("/api/recipes/" + created.getId())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(created)))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.name").value("Updated Salad"));
+        }
+
+        @Test
+        void testDeleteRecipe() throws Exception {
+                Recipe recipe = new Recipe("Soup", "http://example.com", 15, "Boil water.", false);
+                String response = mockMvc.perform(post("/api/recipes")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(recipe)))
+                                .andReturn().getResponse().getContentAsString();
+
+                Recipe created = objectMapper.readValue(response, Recipe.class);
+
+                mockMvc.perform(delete("/api/recipes/" + created.getId()))
+                                .andExpect(status().isNoContent());
+
+                mockMvc.perform(get("/api/recipes/" + created.getId()))
+                                .andExpect(status().isNotFound());
+        }
 }

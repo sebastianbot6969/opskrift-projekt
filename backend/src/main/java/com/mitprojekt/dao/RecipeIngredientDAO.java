@@ -5,12 +5,14 @@ import com.mitprojekt.model.RecipeIngredient;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RecipeIngredientDAO extends BaseDAO {
 
     // INSERT
     public RecipeIngredient insertRecipeIngredient(RecipeIngredient recipeIngredient) {
-        String sql = "INSERT INTO Recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, recipeIngredient.getRecipeId());
@@ -33,7 +35,7 @@ public class RecipeIngredientDAO extends BaseDAO {
 
     // DELETE
     public boolean deleteRecipeIngredient(int id) {
-        String sql = "DELETE FROM Recipe_ingredient WHERE id = ?";
+        String sql = "DELETE FROM recipe_ingredient WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -46,7 +48,7 @@ public class RecipeIngredientDAO extends BaseDAO {
 
     // UPDATE
     public boolean updateRecipeIngredient(RecipeIngredient recipeIngredient) {
-        String sql = "UPDATE Recipe_ingredient SET recipe_id = ?, ingredient_id = ?, amount = ? WHERE id = ?";
+        String sql = "UPDATE recipe_ingredient SET recipe_id = ?, ingredient_id = ?, amount = ? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, recipeIngredient.getRecipeId());
@@ -62,7 +64,7 @@ public class RecipeIngredientDAO extends BaseDAO {
 
     // GET BY ID
     public RecipeIngredient getRecipeIngredientById(int id) {
-        String sql = "SELECT id, recipe_id, ingredient_id, amount FROM Recipe_ingredient WHERE id = ?";
+        String sql = "SELECT id, recipe_id, ingredient_id, amount FROM recipe_ingredient WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -83,7 +85,7 @@ public class RecipeIngredientDAO extends BaseDAO {
     // GET ALL
     public List<RecipeIngredient> getAllRecipeIngredients() {
         List<RecipeIngredient> ingredients = new ArrayList<>();
-        String sql = "SELECT id, recipe_id, ingredient_id, amount FROM Recipe_ingredient";
+        String sql = "SELECT id, recipe_id, ingredient_id, amount FROM recipe_ingredient";
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

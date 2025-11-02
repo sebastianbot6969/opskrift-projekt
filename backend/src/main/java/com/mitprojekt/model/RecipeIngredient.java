@@ -6,6 +6,9 @@ public class RecipeIngredient {
     private int IngredientId;
     private String amount;
 
+    public RecipeIngredient() {
+    }
+
     public RecipeIngredient(int id, int RecipeId, int IngredientId, String amount) {
         setId(id);
         setRecipeId(RecipeId);

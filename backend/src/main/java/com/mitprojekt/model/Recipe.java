@@ -1,5 +1,7 @@
 package com.mitprojekt.model;
 
+import java.util.List;
+
 public class Recipe {
     private int id;
     private String name;
@@ -7,6 +9,7 @@ public class Recipe {
     private int time; // in minutes
     private String procedure;
     private boolean hasMade;
+    private List<RecipeIngredient> ingredients;
 
     public Recipe() {
     }
@@ -89,6 +92,14 @@ public class Recipe {
 
     public void setHasMade(boolean hasMade) {
         this.hasMade = hasMade;
+    }
+
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public boolean matches(String keyword) {

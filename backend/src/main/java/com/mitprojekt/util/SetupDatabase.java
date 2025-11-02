@@ -8,7 +8,7 @@ public class SetupDatabase {
 
         public static void initialize() {
     String ingredientSql = """
-        CREATE TABLE IF NOT EXISTS Ingredient (
+        CREATE TABLE IF NOT EXISTS ingredient (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             parent_id INTEGER
@@ -16,7 +16,7 @@ public class SetupDatabase {
         """;
 
     String RecipeSql = """
-        CREATE TABLE IF NOT EXISTS Recipe (
+        CREATE TABLE IF NOT EXISTS recipe (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             link_to_page TEXT,
@@ -27,7 +27,7 @@ public class SetupDatabase {
         """;
 
     String RecipeIngredientsSql = """
-            CREATE TABLE IF NOT EXISTS Recipe_ingredient (
+            CREATE TABLE IF NOT EXISTS recipe_ingredient (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             recipe_id INTEGER NOT NULL,
             ingredient_id INTEGER NOT NULL,

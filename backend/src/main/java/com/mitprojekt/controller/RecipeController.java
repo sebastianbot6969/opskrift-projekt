@@ -1,8 +1,7 @@
 package com.mitprojekt.controller;
 
-import com.mitprojekt.dao.RecipeDAO;
 import com.mitprojekt.model.Recipe;
-
+import com.mitprojekt.service.RecipeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,54 +12,63 @@ import java.util.List;
 @RequestMapping("/api/recipes")
 public class RecipeController {
 
-    private final RecipeDAO recipeDAO = new RecipeDAO();
+    private final RecipeService recipeService;
 
-    @GetMapping
-    public List<Recipe> getAllRecipes() {
-        return recipeDAO.getAll();
+    // Dependency injection
+    public RecipeController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
+    // GET /api/recipes
+    @GetMapping
+    public ResponseEntity<List<Recipe>> getAllRecipes() {
+        List<Recipe> recipes = recipeService.getAllRecipes();
+        return ResponseEntity.ok(recipes);
+    }
+
+    // GET /api/recipes/{id}
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable int id) {
-        Recipe recipe = recipeDAO.getById(id);
+        Recipe recipe = recipeService.getRecipeById(id);
         if (recipe == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(recipe);
     }
 
-    @PostMapping
-    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
-        Recipe createdRecipe = recipeDAO.insertRecipe(recipe);
-
-        URI location = URI.create("/api/recipes/" + createdRecipe.getId());
-
-        return ResponseEntity
-                .created(location)
-                .body(createdRecipe);
+    @GetMapping("/by-ingredient/{ingredientId}")
+    public ResponseEntity<List<Recipe>> getRecipesByIngredient(@PathVariable int ingredientId) {
+        List<Recipe> recipes = recipeService.getRecipesByIngredient(ingredientId);
+        if (recipes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(recipes);
     }
 
+    // POST /api/recipes
+    @PostMapping
+    public ResponseEntity<Recipe> create(@RequestBody Recipe recipe) {
+        Recipe created = recipeService.createRecipeWithIngredients(recipe);
+        return ResponseEntity.status(201).body(created);
+    }
+
+    // PUT /api/recipes/{id}
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable int id, @RequestBody Recipe recipe) {
-        recipe.setId(id);
-        boolean updated = recipeDAO.updateRecipe(recipe);
-
-        if (!updated) {
+        Recipe updated = recipeService.updateRecipe(id, recipe);
+        if (updated == null) {
             return ResponseEntity.notFound().build();
         }
-
-        Recipe updatedRecipe = recipeDAO.getById(id);
-        return ResponseEntity.ok(updatedRecipe);
+        return ResponseEntity.ok(updated);
     }
 
+    // DELETE /api/recipes/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
-        boolean deleted = recipeDAO.deleteRecipe(id);
-
+        boolean deleted = recipeService.deleteRecipe(id);
         if (!deleted) {
-            return ResponseEntity.notFound().build(); 
+            return ResponseEntity.notFound().build();
         }
-        
-        return ResponseEntity.noContent().build(); 
+        return ResponseEntity.noContent().build();
     }
 }

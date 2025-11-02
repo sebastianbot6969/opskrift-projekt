@@ -19,7 +19,7 @@ public class RecipeDAOTest {
     @Test
     void testInsertRecipe() {
         // Arrange
-        Recipe o = new Recipe(1, "Spaghetti Bolognese", "http://example.com", 30, "Kog pasta. Lav sauce.", true);
+        Recipe o = new Recipe( "Spaghetti Bolognese", "http://example.com", 30, "Kog pasta. Lav sauce.", true);
 
         // Act
         Recipe result = dao.insertRecipe(o);
@@ -40,7 +40,7 @@ public class RecipeDAOTest {
     @Test
     void testInsertAndFetch() {
         // Arrange
-        Recipe o = new Recipe(1, "Hakket tomat pasta", "http://example.com", 25, "Kog pasta. Hak tomater.", false);
+        Recipe o = new Recipe( "Hakket tomat pasta", "http://example.com", 25, "Kog pasta. Hak tomater.", false);
         
         // Act
         dao.insertRecipe(o);
@@ -54,7 +54,7 @@ public class RecipeDAOTest {
     @Test
     void testDeleteRecipe() {
         // Arrange
-        Recipe o = new Recipe(1, "Test Recipe", "http://example.com", 20, "Procedure", false);
+        Recipe o = new Recipe( "Test Recipe", "http://example.com", 20, "Procedure", false);
         o = dao.insertRecipe(o);
         
         // Act
@@ -66,7 +66,7 @@ public class RecipeDAOTest {
     @Test
     void testUpdateRecipe() {
         // Arrange
-        Recipe o = new Recipe(1, "Opdateret Recipe", "http://example.com", 15, "Procedure", false);
+        Recipe o = new Recipe( "Opdateret Recipe", "http://example.com", 15, "Procedure", false);
         o = dao.insertRecipe(o);
         o.setName("Opdateret Recipe Navn");
 
@@ -79,7 +79,7 @@ public class RecipeDAOTest {
     @Test
     void testGetById() {
         // Arrange
-        Recipe o = new Recipe(1, "Specifik Recipe", "http://example.com", 10, "Procedure", false);
+        Recipe o = new Recipe( "Specifik Recipe", "http://example.com", 10, "Procedure", false);
         o = dao.insertRecipe(o);    
 
         // Act

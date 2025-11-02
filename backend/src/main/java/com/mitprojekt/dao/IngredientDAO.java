@@ -5,12 +5,14 @@ import com.mitprojekt.model.Ingredient;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class IngredientDAO extends BaseDAO {
 
     // INSERT
     public Ingredient insertIngredient(Ingredient ingredient) {
-        String sql = "INSERT INTO Ingredient (name, parent_id) VALUES (?, ?)";
+        String sql = "INSERT INTO ingredient (name, parent_id) VALUES (?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -43,7 +45,7 @@ public class IngredientDAO extends BaseDAO {
 
     // DELETE
     public boolean deleteIngredient(int ingredientID) {
-        String sql = "DELETE FROM Ingredient WHERE id = ?";
+        String sql = "DELETE FROM ingredient WHERE id = ?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, ingredientID);
@@ -56,7 +58,7 @@ public class IngredientDAO extends BaseDAO {
 
     // UPDATE
     public boolean updateIngredient(Ingredient ingredient) {
-        String sql = "UPDATE Ingredient SET name = ?, parent_id = ? WHERE id = ?";
+        String sql = "UPDATE ingredient SET name = ?, parent_id = ? WHERE id = ?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -79,7 +81,7 @@ public class IngredientDAO extends BaseDAO {
 
     // GET BY ID
     public Ingredient getById(int ingredientID) {
-        String sql = "SELECT id, name, parent_id FROM Ingredient WHERE id = ?";
+        String sql = "SELECT id, name, parent_id FROM ingredient WHERE id = ?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -102,7 +104,7 @@ public class IngredientDAO extends BaseDAO {
     // GET ALL
     public List<Ingredient> getAll() {
         List<Ingredient> ingredients = new ArrayList<>();
-        String sql = "SELECT id, name, parent_id FROM Ingredient";
+        String sql = "SELECT id, name, parent_id FROM ingredient";
 
         try (Connection conn = getConnection();
                 Statement stmt = conn.createStatement();
